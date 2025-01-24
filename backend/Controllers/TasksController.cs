@@ -30,13 +30,13 @@ namespace backend.Controllers
             return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
         }
 
-        [HttpDelete("{taskId}")] // Skrócona wersja Route
+        [HttpDelete("{taskId}")] 
         public async Task<IActionResult> DeleteTask([FromRoute] int taskId)
         {
             var task = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == taskId);
 
             if (task == null)
-                return NotFound(); // Jeśli nie ma zadania, zwróć 404
+                return NotFound(); 
 
             _context.Tasks.Remove(task);
             await _context.SaveChangesAsync();
